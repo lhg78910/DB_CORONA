@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>User Info</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="mt-4">
+        <h3><a href="/"> 홈으로 돌아가기 </a></h3>
+        <h6>(홈으로 돌아가면 수정되지 않습니다.)</h6>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <h2>내 정보 수정</h2>
+          <hr class="mb-3" />
+          <form method="POST" action="/userinfo">
+            <div class="form-group">
+              <label for="id">아이디 (변경 불가능)</label>
+              <input
+                class="form-control"
+                type="text"
+                name="id"
+                value="<%= user[0].ID %>"
+                readonly
+              />
+            </div>
+            <div class="form-group">
+              <label for="password"
+                ><div>비밀번호</div>
+                <div>
+                  (비밀번호를 변경하지 않으려면 <br />기존 비밀번호를
+                  입력하세요)
+                </div></label
+              >
+              <input
+                class="form-control"
+                type="password"
+                name="password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">비밀번호 확인</label>
+              <input
+                class="form-control"
+                type="password"
+                name="confirmPassword"
+                required
+              />
+            </div>
+            <% if (user[0].ROLE !== "A") { %>
+            <div class="form-group">
+              <label for="name">이름</label>
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                value="<%= user[0].NAME %>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="gender">성별</label>
+              <div>
+                <label for="male" class="radio"
+                  ><input type="radio" name="gender" value="M" id="male" <% if
+                  (user[0].GENDER === "M") { %> checked <%}%>/> 남자
+                </label>
+                <label for="female" class="radio"
+                  ><input type="radio" name="gender" value="F" id="female" <% if
+                  (user[0].GENDER === "F") { %> checked <%}%>/> 여자
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address">주소</label>
+              <div>
+                <label for="gangnam" class="radio"
+                  ><input type="radio" name="address" value="강남" id="gangnam"
+                  <% if (user[0].ADDRESS === "강남") { %> checked <%}%> /> 강남
+                </label>
+                <label for="seocho" class="radio"
+                  ><input type="radio" name="address" value="서초" id="seocho"
+                  <% if (user[0].ADDRESS === "서초") { %> checked <%}%> /> 서초
+                </label>
+                <label for="yongsan" class="radio"
+                  ><input type="radio" name="address" value="용산" id="yongsan"
+                  <% if (user[0].ADDRESS === "용산") { %> checked <%}%> /> 용산
+                </label>
+                <label for="mapo" class="radio"
+                  ><input type="radio" name="address" value="마포" id="mapo" <%
+                  if (user[0].ADDRESS === "마포") { %> checked <%}%>/> 마포
+                </label>
+                <label for="seodaemun" class="radio"
+                  ><input type="radio" name="address" value="서대문"
+                  id="seodaemun" <% if (user[0].ADDRESS === "서대문") { %>
+                  checked <%}%> /> 서대문
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="birthdate">생년월일</label>
+              <input
+                class="form-control"
+                type="date"
+                name="birthdate"
+                value="<%= user[0].BIRTHDATE %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="pnum">전화번호</label>
+              <input
+                class="form-control"
+                type="text"
+                name="pnum"
+                placeholder="ex) 01012345678"
+                value="<%= user[0].PNUM %>"
+                pattern="[0-9]{9,11}"
+                required
+              />
+            </div>
+            <%}%>
+            <div class="form-group">
+              <label for="role">역할 (변경 불가능)</label>
+              <input
+                class="form-control"
+                type="text"
+                name="role"
+                value="<%= ((user[0].ROLE === 'A') ? '관리자' : ((user[0].ROLE === 'E') ? '평가자' : ((user[0].ROLE === 'R') ? '식당' : '보건소')))%>"
+                readonly
+              />
+            </div>
+            <% if ((user[0].ROLE) === "R") { %>
+            <div class="form-group">
+              <label for="rname">상호명</label>
+              <input
+                class="form-control"
+                type="text"
+                name="rname"
+                value="<%= user[0].RNAME %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="rlocate">가게 주소</label>
+              <div>
+                <label for="rgangnam" class="radio"
+                  ><input type="radio" name="rlocate" value="강남" id="rgangnam"
+                  <% if (user[0].RLOCATE === "강남") { %> checked <%}%> /> 강남
+                </label>
+                <label for="ryongsan" class="radio"
+                  ><input type="radio" name="rlocate" value="용산" id="ryongsan"
+                  <% if (user[0].RLOCATE === "용산") { %> checked <%}%> /> 용산
+                </label>
+                <label for="rseodaemun" class="radio"
+                  ><input type="radio" name="rlocate" value="서대문"
+                  id="rseodaemun" <% if (user[0].RLOCATE === "서대문") { %>
+                  checked <%}%> /> 서대문
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="rpnum">가게 전화번호</label>
+              <input
+                class="form-control"
+                type="text"
+                name="rpnum"
+                value="<%= user[0].RPNUM %>"
+                required
+              />
+            </div>
+            <%}%>
+            <button class="btn btn-primary" type="submit">수정하기</button>
+          </form>
+          <hr class="mb-3" />
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

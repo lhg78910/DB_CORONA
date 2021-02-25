@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>제출하기</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col-6">
+          <h2><%=task %> 파일 제출</h2>
+          <hr class="mb-3" />
+          <form
+            method="POST"
+            action="/submitter/data_parse"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label for="csvfile">CSV 파일</label>
+              <input class="form-control" type="file" name="csvfile" required />
+            </div>
+            <div class="form-group">
+              <label for="typeid">원본 데이터 타입</label>
+              <input class="form-control" type="text" name="typeid" required />
+            </div>
+            <div class="form-group">
+              <label for="round">회차</label>
+              <input
+                class="form-control"
+                type="text"
+                name="round"
+                placeholder="ex) 3회차면 -> 3"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="date">데이터 수집 기간</label>
+              <input type="date" name="startdate" id="date" required /> ~
+              <input type="date" name="enddate" id="date" required />
+            </div>
+            <button class="btn btn-primary" type="submit">제출하기</button>
+          </form>
+          <hr class="mb-3" />
+
+          <p>
+            <% if(list[0]) { %>
+              <% if(list[10]) { %> 
+                <p>
+                  잘못된 csv 제출 형식입니다. 다시 제출해주십시오.
+                </p>  
+              <% } %>
+              <% if(list[6]) { %> 
+                <p>
+                  잘못된 원본 데이터 타입 형식입니다. 다시 입력해주십시오.
+                </p>  
+              <% } %>
+              <% if(list[7]) { %> 
+                <p>
+                  존재하지 않는 원본 데이터 타입 형식입니다. 다시 입력해주십시오.
+                </p>  
+              <% } %>
+              <% if (list[11]) { %>
+                <p>
+                  잘못된 회차 형식입니다. 다시 입력해주십시오.
+                </p>
+              <% } %>
+              <% if (list[8]) { %>
+                <p>
+                  데이터 수집 시작 기간이 종료 기간보다 늦습니다. 다시 입력해주십시오.
+                </p>
+              <% } %>
+              <% if (list[9]) { %>
+                <p>
+                  데이터 수집 종료 기간이 오늘보다 늦습니다. 다시 입력해주십시오.
+                </p>
+              <% } %>
+            <% } %>
+          </p>
+
+          <ul>
+            <li><a href="/">홈으로 돌아가기</a></li>
+            <li>
+              <a href="/submitter/participate">태스크 참여 목록 보기</a>
+            </li>
+            <li><a href="/submitter/get_example_csv">시연용 예시 CSV 파일 다운로드</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

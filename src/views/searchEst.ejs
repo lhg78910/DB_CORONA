@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Estimated List by each Estimator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <h2>선택한 평가자가 평가한 파싱 데이터 시퀀스 파일 목록</h2>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>데이터 시퀀스 파일 ParsingID</th>
+                <th>태스크 이름</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i = 0; i < r.length; i++) { %>
+              <tr>
+                <td><%=r[i].PARSINGID %></td>
+                <td><%=r[i].TASKNAME %></td>
+              </tr>
+              <% } %>
+              <% for(i = 0; i < h.length; i++) { %>
+                <tr>
+                  <td><%=h[i].PARSINGID %></td>
+                  <td><%=h[i].TASKNAME %></td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+        
+        </div>
+      
+        <hr class="mb-3" />
+      <div><a href="/allUsers"> 모든회원 명단으로 돌아가기</a></div>
+      </div>
+    </div>
+  </body>
+</html>

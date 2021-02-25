@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Statistics</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <h2>각 태스크에 참여중인 제출자 목록</h2>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>태스크 이름</th>
+                <th>제출자 목록</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i = 0; i < list.length; i++) { %>
+              <tr>
+                <td><%=list[i].TASKNAME %></td>
+                <td><%=list[i].SUBMITTER %></td>
+              </tr>
+              <% } %>
+              <% for(i = 0; i < list2.length; i++) { %>
+                <tr>
+                  <td><%=list2[i].TASKNAME %></td>
+                  <td><%=list2[i].SUBMITTER %></td>
+                </tr>
+                <% } %>
+                
+            </tbody>
+          </table>
+
+          <h2>제출자별 참여태스크 확인</h2>
+          <div>(확인하고자 하는 제출자가 속한 행을 클릭하시오)</div>
+          <table id="submitter_task" class="table table-hover table-striped table-sm table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                  <th>제출자 이름</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i = 0; i < sub1.length; i++) { %>
+                <tr>
+                  <td><%=sub1[i].SUBMITTER %></td>
+                </tr>
+                <% } %>
+                <% for(i = 0; i < sub2.length; i++) { %>
+                  <tr>
+                    <td><%=sub2[i].SUBMITTER %></td>
+                  </tr>
+                  <% } %>
+                  
+              </tbody>
+            </table>
+            <div id="ex1_Result1" ></div> 
+
+        </div>
+        <script>
+            $("#submitter_task tr").click(function(){     
+                var str = ""
+               
+                // clicked Row(<tr>)
+                var tr = $(this);
+                var td = tr.children();
+                var submitterid = td.eq(0).text();
+                
+                window.location.href = "/move?id=" + submitterid;
+            });
+        </script>
+        
+
+
+
+        <hr class="mb-3" />
+      <div><a href="/"> 홈으로 돌아가기</a></div>
+      </div>
+    </div>
+  </body>
+</html>

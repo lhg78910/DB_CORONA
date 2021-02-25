@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>태스크 참여 목록</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <h2>태스크 참여 목록</h2>
+        <hr class="mb-3" />
+        <div class="table-responsive-sm"></div>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <colgroup>
+            <col width="60" />
+            <col width="200" />
+            <col width="200" />
+          </colgroup>
+          <thead class="thead-dark">
+            <tr>
+              <th>번호</th>
+              <th>태스크 이름</th>
+              <th>태스크 제출하기</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < list.length; i++) { %>
+            <tr>
+              <td><%=i+1 %></td>
+              <td><%=list[i].NAME %></td>
+              <td>
+                <form action="/submitter/data_submit" method="post">
+                  <input
+                    type="hidden"
+                    name="taskname_submit"
+                    value="<%=list[i].NAME %>"
+                  />
+                  <input type="submit" value="제출하기" />
+                </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <hr class="mb-3" />
+      <div><a href="/"> 홈으로 돌아가기</a></div>
+    </div>
+  </body>
+</html>

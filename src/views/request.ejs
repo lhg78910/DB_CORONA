@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Request List</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <h2>태스크 요청 명단</h2>
+        <div class="table-responsive-sm"></div>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>태스크 이름</th>
+              <th>제출자 ID</th>
+              <th>역할</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% REQUEST.forEach(function(item,index) { %>
+            <tr>
+              <td><%=item.TASKNAME %></td>
+              <td><%=item.SUBMITTERID%></td>
+              <% if (item.ROLE ==="R") {%>
+              <td>식당</td>
+              <%}%> <% if (item.ROLE === "H") {%>
+              <td>보건소</td>
+              <%}%>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        <div>
+          <div>첫 요청부터 처리 가능</div>
+          <div>
+            <button class="btn btn-outline-primary">
+              <a href="/apply_request">승인</a>
+            </button>
+            <button class="btn btn-outline-primary">
+              <a href="/deny_request">거절</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <hr class="mb-3" />
+        <div><a href="/"> 홈으로 돌아가기</a></div>
+      </div>
+    </div>
+  </body>
+</html>

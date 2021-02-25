@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+        <div class="row mt-4">
+        <h2>기능별 검색</h2>
+        <div>(검색 결과로 나온 회원을 클릭할 시 상세한 정보를 볼 수 있습니다)</div>
+        <table id = "search_submit" class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>성별</th>
+                <th>주소</th>
+                <th>생일</th>
+                <th>전화번호</th>
+                <th>나이</th>
+                <th>유형(역할)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < submitter.length; i++) { %>
+            <tr>
+              <td><%=submitter[i].ID %></td>
+              <td><%=submitter[i].NAME %></td>
+              <td><%=submitter[i].GENDER %></td>
+              <td><%=submitter[i].ADDRESS %></td>
+              <td><%=submitter[i].BIRTHDATE.toString().substring(0, 15) %></td>
+              <td><%=submitter[i].PNUM %></td>
+              <td><%=submitter[i].AGE %></td>
+              <td><%=submitter[i].ROLE %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <div id="searchsubmit_Result" ></div>
+
+        <table id = "search_est" class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>성별</th>
+                <th>주소</th>
+                <th>생일</th>
+                <th>전화번호</th>
+                <th>나이</th>
+                <th>유형(역할)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < estimator.length; i++) { %>
+            <tr>
+              <td><%=estimator[i].ID %></td>
+              <td><%=estimator[i].NAME %></td>
+              <td><%=estimator[i].GENDER %></td>
+              <td><%=estimator[i].ADDRESS %></td>
+              <td><%=estimator[i].BIRTHDATE.toString().substring(0, 15) %></td>
+              <td><%=estimator[i].PNUM %></td>
+              <td><%=estimator[i].AGE %></td>
+              <td><%=estimator[i].ROLE %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <div id="searchest_Result" ></div>
+    </div>
+
+    <script>
+      $("#search_submit tr").click(function(){     
+          var str = ""
+         
+          // clicked Row(<tr>)
+          var tr = $(this);
+          var td = tr.children();
+          var ID = td.eq(0).text();
+          
+          str +=    " * ID : <font color='red'>" + ID + "</font>";
+          $("#searchsubmit_Result").html(str);
+          window.location.href = "/searchSubmitter?id=" + ID;
+      });
+
+      $("#search_est tr").click(function(){     
+          var str = ""
+         
+          // clicked Row(<tr>)
+          var tr = $(this);
+          var td = tr.children();
+          var ID = td.eq(0).text();
+          
+          str +=    " * ID : <font color='red'>" + ID + "</font>";
+          $("#searchest_Result").html(str);
+          window.location.href = "/searchEst?id=" + ID;
+      });
+  </script>
+
+    <div><a href="/allUsers"> 이전 페이지로 돌아가기</a></div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Tasks by Each submitter</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <h2>제출자별 참여중인 태스크 보기</h2>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>태스크 이름</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i = 0; i < r.length; i++) { %>
+              <tr>
+                <td><%=r[i].TASKNAME %></td>
+              </tr>
+              <% } %>
+              <% for(i = 0; i < h.length; i++) { %>
+                <tr>
+                  <td><%=h[i].TASKNAME %></td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+        
+        </div>
+      
+        <hr class="mb-3" />
+      <div><a href="/submitterPerTask"> 이전으로 돌아가기</a></div>
+      </div>
+    </div>
+  </body>
+</html>

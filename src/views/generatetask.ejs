@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Create Task</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col-6">
+          <h2>태스크 생성</h2>
+          <hr class="mb-3" />
+          <form method="POST" action="/generatetaskAf">
+            <div class="form-group">
+              <label for="name">태스크 이름</label>
+              <input class="form-control" type="text" name="name" />
+            </div>
+            <div class="form-group">
+              <label for="description">설명</label>
+              <input
+                class="form-control"
+                type="text"
+                name="description"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="taskdatatable">태스크 데이터 테이블 이름</label>
+              <input
+                class="form-control"
+                type="text"
+                name="taskdatatable"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cycle">주기</label>
+              <input
+                class="form-control"
+                type="text"
+                name="cycle"
+                placeholder="ex) 235959 / 23:59:59"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="role">제출자 유형</label>
+              <div>
+                <label for="restaurant" class="radio"
+                  ><input type="radio" name="role" value="R" id="restaurant" />
+                  식당
+                </label>
+                <label for="hospital" class="radio"
+                  ><input type="radio" name="role" value="H" id="hospital" />
+                  보건소
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="numschema">입력할 스키마 수(4이상 10이하 정수)</label>
+              <input
+                class="form-control"
+                type="text"
+                name="numschema"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="schema5">스키마5(필수아님, NULL이면 NULL입력)</label>
+              <input class="form-control" type="text" name="schema5" required />
+            </div>
+            <div class="form-group">
+              <label for="schema6">스키마6(필수아님, NULL이면 NULL입력)</label>
+              <input class="form-control" type="text" name="schema6" required />
+            </div>
+            <div class="form-group">
+              <label for="schema7">스키마7(필수아님, NULL이면 NULL입력)</label>
+              <input class="form-control" type="text" name="schema7" required />
+            </div>
+            <div class="form-group">
+              <label for="schema8">스키마8(필수아님, NULL이면 NULL입력)</label>
+              <input class="form-control" type="text" name="schema8" required />
+            </div>
+            <div class="form-group">
+              <label for="schema9">스키마9(필수아님, NULL이면 NULL입력)</label>
+              <input class="form-control" type="text" name="schema9" required />
+            </div>
+            <div class="form-group">
+              <label for="schema10"
+                >스키마10(필수아님, NULL이면 NULL입력)</label
+              >
+              <input
+                class="form-control"
+                type="text"
+                name="schema10"
+                required
+              />
+            </div>
+            <button class="btn btn-primary" type="submit" id="task">
+              태스크 생성
+            </button>
+          </form>
+          <hr class="mb-3" />
+          <div><a href="/"> 홈으로 돌아가기</a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

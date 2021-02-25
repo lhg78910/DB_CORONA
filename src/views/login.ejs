@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <div class="col-6">
+          <h2>로그인</h2>
+          <hr class="mb-3" />
+          <% if (errors !== " ") {%> <% errors.forEach(function(item) { %>
+          <div class="alert alert-danger"><%- item %></div>
+          <% });%> <%}%>
+          <form method="POST" action="/login">
+            <div class="form-group">
+              <label for="id">아이디</label>
+              <input class="form-control" type="text" name="id" required />
+            </div>
+            <div class="form-group">
+              <label for="password">비밀번호</label>
+              <input
+                class="form-control"
+                type="password"
+                name="password"
+                required
+              />
+            </div>
+            <button class="btn btn-primary" type="submit" name="reg_user">
+              로그인하기
+            </button>
+          </form>
+          <hr class="mb-3" />
+          <div>
+            아직 회원이 아니신가요? <a href="/register">회원가입하기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>To evaluate list(h)</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <h2>평가 안된 태스크 목록(보건소)</h2>
+        <hr class="mb-3" />
+        <div class="table-responsive-sm"></div>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>파일 번호</th>
+              <th>제출자 아이디</th>
+              <th>전체 튜플 수</th>
+              <th>중복 튜플 수</th>
+              <th>null 컬럼 비율</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < hparsed.length; i++) { %>
+            <tr>
+              <td><%=hparsed[i].PARSINGID %></td>
+              <td><%=hparsed[i].SID %></td>
+              <td><%=hparsed[i].TOTALTUPLE %></td>
+              <td><%=hparsed[i].DUPTUPLE %></td>
+              <td><%=hparsed[i].NULLRATE %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <hr class="mb-3" />
+      <ul>
+        <li><a href="/hestimating">보건소 평가하러 가기</a></li>
+        <li><a href="/estimatormain2">보건소 평가정보 보러가기</a></li>
+        <li><a href="/estimatormain">레스토랑 평가정보 보러가기</a></li>
+        <li><a href="/"> 홈으로 돌아가기</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

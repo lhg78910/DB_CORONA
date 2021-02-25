@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Evaluating Restaurant</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <% if (rparsed.length < 1) {%>
+        <h2>평가할 식당 데이터가 없습니다.</h2>
+        <h5>(다른 화면을 선택해주세요)</h5>
+        <%} else {%>
+        <h2>식당 평가하기<br /></h2>
+        <div>: 한 개 씩 평가할 수 있습니다.</div>
+        <hr class="mb-3" />
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>파일 번호</th>
+              <th>제출자 아이디</th>
+              <th>전체 튜플 수</th>
+              <th>중복 튜플 수</th>
+              <th>null 컬럼 비율</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%=rparsed[0].PARSINGID %></td>
+              <td><%=rparsed[0].SID %></td>
+              <td><%=rparsed[0].TOTALTUPLE %></td>
+              <td><%=rparsed[0].DUPTUPLE %></td>
+              <td><%=rparsed[0].NULLRATE %></td>
+            </tr>
+          </tbody>
+        </table>
+        <hr class="mb-3" />
+        <form method="POST" action="/restimatingAf">
+          <div>
+            <select name="score">
+              <option value="0">0점</option>
+              <option value="1">1점</option>
+              <option value="2">2점</option>
+              <option value="3">3점</option>
+              <option value="4">4점</option>
+              <option value="5">5점</option>
+              <option value="6">6점</option>
+              <option value="7">7점</option>
+              <option value="8">8점</option>
+              <option value="9">9점</option>
+              <option value="10">10점</option>
+            </select>
+          </div>
+          <br />
+          <div>
+            <select name="pass">
+              <option value="N">non-pass</option>
+              <option value="P">pass</option>
+            </select>
+          </div>
+          <li><a href="/downRparsed">csv 파일 열기</a></li>
+          <button class="btn btn-primary" type="submit" name="est-score">
+            평가 제출
+          </button>
+        </form>
+        <%}%>
+      </div>
+      <hr class="mb-3" />
+      <ul>
+        <li><a href="/notestimated">평가 안된 레스토랑 데이터 목록</a></li>
+        <li><a href="/estimatormain">평가된 레스토랑 데이터 목록</a></li>
+        <li><a href="/estimatormain2">평가된 보건소 데이터 목록</a></li>
+        <li><a href="/"> 홈으로 돌아가기</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

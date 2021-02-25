@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>제출한 파일 전체 현황</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <h2>제출한 파일들의 현황</h2>
+        <% var num = 1%>
+        <% var num2 = 1%>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <%data.forEach(function(item,index){ %>
+            <%num2 = data[0].TID%> 
+            <% if (item.TID != num && item.TID > num){%>
+              <%num = num + 1%>
+            <%}%> 
+            <% if(num2 > item.TID){%>
+              <%num2 = item.TID%>
+            <%} %>
+          <%})%>
+          <%for (var i=num2;i<num+1;i++) {%>
+          <!-- <caption>데이터 타입: <%=i%></caption> -->
+          <thead class="thead-dark">
+            <tr>
+              <th>태스크 이름</th>
+              <th>회차</th>
+              <th>제출자 ID</th>  
+              <th>파일 ID</th>
+              <th>평가 여부</th>
+              <th>평가 점수</th>
+              <th>파일의 패스 여부</th>
+              <th>원본 데이터 타입</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%data.forEach(function(item,index){ %>
+            <tr>
+              <% if (item.TID == i){%>
+              <td><%=item.TASKNAME%></td>
+              <td><%=item.ROUND%></td>
+              <td><%=item.SID%></td>
+              <td><%=item.PARSINGID%></td>
+              <td><%=item.ESTATE%></td>
+              <td><%=item.ESCORE%></td>
+              <td><%=item.PASS%></td>
+              <td><%=item.TID%></td>
+            </tr>
+            <%}%>
+            <%})%>
+          </tbody>
+          <%}%>
+        </table>
+      </div>
+      <hr class="mb-3" />
+      <div><a href="/"> 홈으로 돌아가기</a></div>
+      <div><a href="/mypage">이전 페이지로</a></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

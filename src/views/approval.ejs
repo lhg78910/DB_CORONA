@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Approval List</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row mt-4">
+        <h2>태스크 참여 명단</h2>
+        <hr class="mb-3" />
+        <div class="table-responsive-sm"></div>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>태스크 이름</th>
+              <th>제출자 ID</th>
+              <th>역할</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < APPROVAL.length; i++) { %>
+            <tr>
+              <td><%=APPROVAL[i].TASKNAME %></td>
+              <td><%=APPROVAL[i].SUBMITTERID %></td>
+              <% if (APPROVAL[i].ROLE ==="R") {%> <td>식당</td> <%}%>
+              <% if (APPROVAL[i].ROLE === "H") {%> <td>보건소</td> <%}%>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        </div>
+        <hr class="mb-3" />
+        <div><a href="/"> 홈으로 돌아가기</a></div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Statistics</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <h3>태스크별 제출된 <font color='blue'>전체파일 수</font></h3>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>태스크 이름</th>
+                <th>전체 파일 수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i = 0; i < rstats.length; i++) { %>
+              <tr>
+                <td><%=rstats[i].TASKNAME %></td>
+                <td><%=rstats[i].NUM %></td>
+              </tr>
+              <% } %>
+              <% for(i = 0; i < hstats.length; i++) { %>
+                <tr>
+                  <td><%=hstats[i].TASKNAME %></td>
+                  <td><%=hstats[i].NUM %></td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+        <h3><font color='blue'>PASS</font>되어 태스크 데이터 테이블에 저장된 TUPLE 수</h3>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>태스크 이름</th>
+                <th>PASS후 저장된 튜플 수</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i = 0; i < rest.length; i++) { %>
+            <tr>
+                <td><%=rest[i].TASKNAME %></td>
+                <td><%=rest[i].CNT %></td>
+            </tr>
+            <% } %>
+            <% for(i = 0; i < hos.length; i++) { %>
+            <tr>
+                <td><%=hos[i].TASKNAME %></td>
+                <td><%=hos[i].CNT %></td>
+             </tr>
+             <% } %>
+            </tbody>
+          </table>
+
+          <h3><font color='blue'>원본 데이터 타입 수준</font>에서 전체 제출된 목록보기</h3>
+          <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>태스크 이름</th>
+                <th>원본 데이터 타입</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i = 0; i < rtype.length; i++) { %>
+            <tr>
+                <td><%=rtype[i].TASKNAME %></td>
+                <td><%=rtype[i].TID %></td>
+            </tr>
+            <% } %>
+            <% for(i = 0; i < htype.length; i++) { %>
+            <tr>
+                <td><%=htype[i].TASKNAME %></td>
+                <td><%=htype[i].TID %></td>
+             </tr>
+             <% } %>
+            </tbody>
+          </table>
+
+          <h3><font color='blue'>원본 데이터 타입 수준</font>에서 PASS되어 태스크 데이터 테이블에 저장된 TUPLE 수 보기</h3>
+          <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>태스크 이름</th>
+                <th>원본 데이터 타입</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for(i = 0; i < rtype2.length; i++) { %>
+            <tr>
+                <td><%=rtype2[i].TASKNAME %></td>
+                <td><%=rtype2[i].TID %></td>
+            </tr>
+            <% } %>
+            <% for(i = 0; i < htype2.length; i++) { %>
+            <tr>
+                <td><%=htype2[i].TASKNAME %></td>
+                <td><%=htype2[i].TID %></td>
+             </tr>
+             <% } %>
+            </tbody>
+          </table>
+        </div>
+        <div><a href="/submitterPerTask">각 태스크에 참여중인 제출자들의 목록</a></div>
+      
+        <hr class="mb-3" />
+      <div><a href="/"> 홈으로 돌아가기</a></div>
+      </div>
+    </div>
+  </body>
+</html>

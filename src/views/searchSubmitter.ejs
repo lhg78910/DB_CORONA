@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Task List by each Submitter</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <h2>선택한 제출자가 참여중인 태스크와 통계정보</h2>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>해당 태스크의 ParsingID </th>
+                <th>태스크 이름</th>
+                <th>전체 제출한 파일 수 </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(i = 0; i < rtask.length; i++) { %>
+              <tr>
+                <td><%=rtask[i].PARSINGID %></td>
+                <td><%=rtask[i].TASKNAME %></td>
+                <td><%=rtask[i].NUM %></td>
+              </tr>
+              <% } %>
+              <% for(i = 0; i < htask.length; i++) { %>
+                <tr>
+                <td><%=htask[i].PARSINGID %></td>
+                <td><%=htask[i].TASKNAME %></td>
+                <td><%=htask[i].NUM %></td>
+                </tr>
+                <% } %>
+            </tbody>
+          </table>
+
+          <h2>그 외의 통계정보</h2>
+          <table class="table table-hover table-striped table-sm table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>해당 태스크의 ParsingID </th>
+                    <th>태스크 이름</th>
+                    <th>PASS되어 태스크 데이터 테이블에 저장된 tuple수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(i = 0; i < rstats.length; i++) { %>
+                <tr>
+                    <td><%=rstats[i].PARSINGID %></td>
+                    <td><%=rstats[i].TASKNAME %></td>
+                    <td><%=rstats[i].CNT %></td>
+                </tr>
+                <% } %>
+                <% for(i = 0; i < hstats.length; i++) { %>
+                  <tr>
+                    <td><%=hstats[i].PARSINGID %></td>
+                    <td><%=hstats[i].TASKNAME %></td>
+                    <td><%=hstats[i].CNT %></td>
+                  </tr>
+                  <% } %>
+              </tbody>
+            </table>
+        
+        </div>
+      
+        <hr class="mb-3" />
+      <div><a href="/allUsers"> 모든회원 명단으로 돌아가기</a></div>
+      </div>
+    </div>
+  </body>
+</html>

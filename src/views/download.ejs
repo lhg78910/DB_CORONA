@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Download csv files of Tasks </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-3">
+        <h3>태스크 별 태스크 데이터 테이블에 모인 csv 파일 다운로드</h3>
+        <div>(태스크를 클릭하면 해당 태스크에 해당하는 태스크 데이터 테이블에 모인 튜플들을 csv 파일로 다운로드 할 수 있습니다)</div>
+        <table id = "restaurant_task" class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>식당 태스크 이름</th>
+                <th>원본 데이터 타입</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < r.length; i++) { %>
+            <tr>
+              <td><%=r[i].NAME %></td>
+              <td><%=r[i].TID %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <div id="restaurant_Result" ></div>
+
+
+        <table id = "hospital_task" class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+              <tr>
+                <th>보건소 태스크 이름</th>
+                <th>원본데이터 타입</th>
+              </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < h.length; i++) { %>
+              <tr>
+                <td><%=h[i].NAME %></td>
+                <td><%=h[i].TID %></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <div id="hospital_Result" ></div>
+      </div>
+        
+      <script>
+        $("#restaurant_task tr").click(function(){     
+            var str = ""
+            
+            // clicked Row(<tr>)
+            var tr = $(this);
+            var td = tr.children();
+            var name = td.eq(0).text();
+            var tid = td.eq(1).text();
+            
+            str +=    " * Task name : <font color='red'>" + name + "</font>" + tid;
+            $("#restaurant_Result").html(str);
+            window.location.href = "/download_r?id=" + name + "?tid:" + tid;
+        });
+  
+        $("#hospital_task tr").click(function(){     
+            var str = ""
+            
+            // clicked Row(<tr>)
+            var tr = $(this);
+            var td = tr.children();
+            var name = td.eq(0).text();
+            var tid = td.eq(1).text();
+            
+            str +=    " * Task name : <font color='red'>" + name + "</font>" + tid;
+            $("#hospital_Result").html(str);
+            window.location.href = "/download_h?id=" + name + "?tid:" + tid;
+        });
+    </script>
+
+      <div><a href="/"> 홈으로 돌아가기</a></div>
+  </body>
+</html>

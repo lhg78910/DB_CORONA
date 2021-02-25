@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <%- include('head'); -%>
+    <title>Evaluated Restaurant</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-4">
+        <h2>평가 완료 태스크 목록(식당)<br /></h2>
+        <div>: 수정할 수 없습니다.</div>
+        <table class="table table-hover table-striped table-sm table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>파일 번호</th>
+              <th>제출자 아이디</th>
+              <th>전체 튜플 수</th>
+              <th>중복 튜플 수</th>
+              <th>null 컬럼 비율</th>
+              <th>당신의 평가 점수</th>
+              <th>승인상태(P/N)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(i = 0; i < rparsed.length; i++) { %>
+            <tr>
+              <td><%=rparsed[i].PARSINGID %></td>
+              <td><%=rparsed[i].SID %></td>
+              <td><%=rparsed[i].TOTALTUPLE %></td>
+              <td><%=rparsed[i].DUPTUPLE %></td>
+              <td><%=rparsed[i].NULLRATE %></td>
+              <td><%=rparsed[i].ESCORE %></td>
+              <td><%=rparsed[i].PASS %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <hr class="mb-3" />
+      <ul>
+        <li><a href="/notestimated">평가 안된 레스토랑 데이터 목록</a></li>
+        <li><a href="/estimatormain2">평가된 보건소 데이터 목록</a></li>
+        <li><a href="/"> 홈으로 돌아가기</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
