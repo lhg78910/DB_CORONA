@@ -1,4 +1,3 @@
-# DB_CORONA
 데이터베이스 수업에서 한 6인 프로젝트.
 html+css+Node.js+Mysql 이용하였음.
 
