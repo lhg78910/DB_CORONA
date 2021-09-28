@@ -1,5 +1,5 @@
 데이터베이스 수업에서 한 6인 프로젝트.
-html+css+Node.js+javascript+Mysql 이용하였음.
+html+css+Node.js+Express+React+Mysql 이용하였음.
 
 # 실행방법
 1) Mysql에 sql_data.txt내용 복사/붙여넣기 하고 실행한다. 
